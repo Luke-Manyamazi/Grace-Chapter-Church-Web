@@ -1,0 +1,91 @@
+/* Google Fonts are loaded via <link> in index.html for performance */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-heading: 'Bebas Neue', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    --background: 40 20% 97%;
+    --foreground: 0 0% 8%;
+    --card: 40 20% 97%;
+    --card-foreground: 0 0% 8%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 8%;
+    --primary: 0 0% 8%;
+    --primary-foreground: 40 20% 97%;
+    --secondary: 40 15% 92%;
+    --secondary-foreground: 0 0% 8%;
+    --muted: 40 10% 93%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 265 60% 58%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 40 10% 88%;
+    --input: 40 10% 88%;
+    --ring: 0 0% 8%;
+    --chart-1: 265 60% 58%;
+    --chart-2: 215 70% 55%;
+    --chart-3: 180 50% 50%;
+    --chart-4: 300 50% 55%;
+    --chart-5: 240 50% 60%;
+    --radius: 0.25rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-body;
+  }
+}
+
+/* Skip-to-content: only visible on focus */
+.skip-link {
+  position: absolute;
+  top: -999px;
+  left: 0;
+  z-index: 9999;
+  padding: 0.75rem 1.5rem;
+  background: #000;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* Respect users who prefer no motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.accent-text {
+  color: #7c3aed;
+}
+
+.editorial-link {
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+  transition: opacity 0.2s;
+}
+.editorial-link:hover {
+  opacity: 0.6;
+}
