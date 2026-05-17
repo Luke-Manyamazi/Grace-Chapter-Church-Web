@@ -45,7 +45,7 @@ touch .env
 |---|---|
 | `VITE_EMAILJS_SERVICE_ID` | [emailjs.com](https://www.emailjs.com) → Email Services |
 | `VITE_EMAILJS_TEMPLATE_ID` | EmailJS → Email Templates |
-| `VITE_EMAILJS_PUBLIC_KEY` | EmailJS → Account → API Keys |
+| `VITE_EMAILJS_PUBLIC_KEY` | EmailJS → Account → API Key |
 | `VITE_YOUTUBE_API_KEY` | [Google Cloud Console](https://console.cloud.google.com) → YouTube Data API v3 |
 
 ### 4. Run the dev server
