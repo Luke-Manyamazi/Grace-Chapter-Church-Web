@@ -1,39 +1,93 @@
-**Welcome to your Base44 project** 
+# Grace Chapter Church
 
-**About**
+Official website for Grace Chapter Church — *Revealing Christ to the World*.
 
-View and Edit  your app on [Base44.com](http://Base44.com) 
+Built with React, Vite, and Tailwind CSS.
 
-This project contains everything you need to run your app locally.
+---
 
-**Edit the code in your local development environment**
+## Tech Stack
 
-Any change pushed to the repo will also be reflected in the Base44 Builder.
+- **React 18** + **Vite 6**
+- **Tailwind CSS** + **Shadcn/ui**
+- **Framer Motion** — animations
+- **React Router DOM v6** — routing
+- **TanStack React Query** — data fetching & caching
+- **YouTube Data API v3** — live sermons feed
+- **EmailJS** — contact form
 
-**Prerequisites:** 
+---
 
-1. Clone the repository using the project's Git URL 
-2. Navigate to the project directory
-3. Install dependencies: `npm install`
-4. Create an `.env.local` file and set the right environment variables
+## Getting Started
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/Luke-Manyamazi/Grace-Chapter-Church-Web.git
+cd Grace-Chapter-Church-Web
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Configure environment variables
+
+Copy `.env.example` to `.env` and fill in your keys:
+
+```bash
+cp .env.example .env
+```
+
+| Variable | Where to get it |
+|---|---|
+| `VITE_EMAILJS_SERVICE_ID` | [emailjs.com](https://www.emailjs.com) → Email Services |
+| `VITE_EMAILJS_TEMPLATE_ID` | EmailJS → Email Templates |
+| `VITE_EMAILJS_PUBLIC_KEY` | EmailJS → Account → API Keys |
+| `VITE_YOUTUBE_API_KEY` | [Google Cloud Console](https://console.cloud.google.com) → YouTube Data API v3 |
+
+### 4. Run the dev server
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:5173](http://localhost:5173).
+
+---
+
+## Build for Production
+
+```bash
+npm run build
+```
+
+Output is in the `dist/` folder — deploy to any static host (Netlify, Vercel, Cloudflare Pages, etc.).
+
+---
+
+## Project Structure
 
 ```
-VITE_BASE44_APP_ID=your_app_id
-VITE_BASE44_APP_BASE_URL=your_backend_url
-
-e.g.
-VITE_BASE44_APP_ID=cbef744a8545c389ef439ea6
-VITE_BASE44_APP_BASE_URL=https://my-to-do-list-81bfaad7.base44.app
+src/
+├── pages/          # One file per route
+├── components/
+│   ├── layout/     # Navbar, Footer
+│   ├── shared/     # PageHero, YouTubeEmbed, etc.
+│   └── ui/         # Shadcn/ui primitives
+├── hooks/          # useDocumentTitle, useLatestSermons
+└── lib/            # utils, query client, auth context
+public/
+└── images/         # All church photos and logos
 ```
 
-Run the app: `npm run dev`
+---
 
-**Publish your changes**
+## Social & Contact
 
-Open [Base44.com](http://Base44.com) and click on Publish.
-
-**Docs & Support**
-
-Documentation: [https://docs.base44.com/Integrations/Using-GitHub](https://docs.base44.com/Integrations/Using-GitHub)
-
-Support: [https://app.base44.com/support](https://app.base44.com/support)
+- Website: [gracechapterchurch.online](https://gracechapterchurch.online)
+- YouTube: [@GraceChapterChurch](https://www.youtube.com/@GraceChapterChurch)
+- Instagram: [@grace_chapter_church](https://www.instagram.com/grace_chapter_church)
+- Facebook: [GraceChapterChurch](https://www.facebook.com/GraceChapterChurch)
