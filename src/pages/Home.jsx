@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { ArrowRight, Play, MapPin } from 'lucide-react';
+import { ArrowRight, Play, ChevronLeft, ChevronRight } from 'lucide-react';
 import ScrollTicker from '../components/shared/ScrollTicker';
 import { CountUp } from '../components/shared/TextEffects';
 import useDocumentTitle from '@/hooks/useDocumentTitle';
@@ -108,28 +108,39 @@ export default function Home() {
             </Link>
           </motion.div>
 
-          {/* Slide dots */}
-          <div className="flex items-center gap-2 mt-8" role="tablist" aria-label="Hero slides">
-            {slides.map((_, i) => (
-              <button
-                key={i}
-                role="tab"
-                aria-selected={i === active}
-                aria-label={`Slide ${i + 1}: ${slides[i].line1} ${slides[i].line2}`}
-                onClick={() => setActive(i)}
-                className={`h-1 rounded-full transition-all duration-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${
-                  i === active ? 'w-8 bg-white' : 'w-2 bg-white/35 hover:bg-white/60'
-                }`}
-              />
-            ))}
+          {/* Slide dots + arrows */}
+          <div className="flex items-center gap-4 mt-8">
+            <button
+              onClick={() => setActive(i => (i - 1 + slides.length) % slides.length)}
+              aria-label="Previous slide"
+              className="w-9 h-9 flex items-center justify-center border border-white/30 text-white/60 hover:text-white hover:border-white transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            >
+              <ChevronLeft className="w-4 h-4" aria-hidden="true" />
+            </button>
+            <div className="flex items-center gap-2" role="tablist" aria-label="Hero slides">
+              {slides.map((_, i) => (
+                <button
+                  key={i}
+                  role="tab"
+                  aria-selected={i === active}
+                  aria-label={`Slide ${i + 1}: ${slides[i].line1} ${slides[i].line2}`}
+                  onClick={() => setActive(i)}
+                  className={`h-1 rounded-full transition-all duration-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${
+                    i === active ? 'w-8 bg-white' : 'w-2 bg-white/35 hover:bg-white/60'
+                  }`}
+                />
+              ))}
+            </div>
+            <button
+              onClick={() => setActive(i => (i + 1) % slides.length)}
+              aria-label="Next slide"
+              className="w-9 h-9 flex items-center justify-center border border-white/30 text-white/60 hover:text-white hover:border-white transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            >
+              <ChevronRight className="w-4 h-4" aria-hidden="true" />
+            </button>
           </div>
         </div>
 
-        <div className="absolute right-6 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-4 z-10" aria-hidden="true">
-          <div className="w-px h-12 bg-white/20" />
-          <span className="text-white/30 text-[9px] font-bold tracking-[0.3em] uppercase" style={{ writingMode: 'vertical-rl' }}>Connect</span>
-          <div className="w-px h-12 bg-white/20" />
-        </div>
       </section>
 
       <ScrollTicker />

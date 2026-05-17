@@ -78,7 +78,7 @@ export default function Ministries() {
 
   return (
     <div className="bg-[#f7f4ef]">
-      <PageHero title="Ministries" subtitle="Serving together, growing in grace" image={HERO_IMG} />
+      <PageHero title="Ministries" subtitle="Serving together, growing in grace" image={HERO_IMG} objectPosition="center 30%" />
 
       {/* Ministry sections */}
       {ministries.map((m, i) => (

@@ -6,7 +6,7 @@ import { Calendar, Clock, MapPin, Phone, Ticket, CalendarX } from 'lucide-react'
 import useDocumentTitle from '@/hooks/useDocumentTitle';
 import allEvents from '../data/events.json';
 
-const HERO_IMG = '/images/gcc16.jpg';
+const HERO_IMG = '/images/gcc_events_hero.jpg';
 const FEATURED_IMG = '/images/gcc11.jpg';
 
 const pastVideos = [

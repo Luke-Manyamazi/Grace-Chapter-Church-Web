@@ -27,7 +27,7 @@ export default function About() {
 
   return (
     <div className="bg-[#f7f4ef]">
-      <PageHero title="About Us" subtitle="Our mandate is to reveal Christ to the world." image={HERO_IMG} />
+      <PageHero title="About Us" subtitle="Our mandate is to reveal Christ to the world." image={HERO_IMG} objectPosition="center 70%" overlay="bg-black/45" />
 
       {/* Vision · Mission · Result */}
       <section className="py-24 lg:py-32 border-b border-black/8" aria-labelledby="purpose-heading">

@@ -7,17 +7,17 @@ const GCC_LOGO = '/images/gcc_logo.png';
 
 const homeDropdown = [
   { label: 'About Us', path: '/about' },
-  { label: 'House Churches', path: '/house-churches' },
 ];
 
 const flatLinks = [
+  { label: 'House Churches', path: '/house-churches' },
   { label: 'Ministries', path: '/ministries' },
   { label: 'Sermons', path: '/sermons' },
   { label: 'Events', path: '/events' },
   { label: 'Contact', path: '/contact' },
 ];
 
-const homeGroup = ['/', '/about', '/house-churches'];
+const homeGroup = ['/', '/about'];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);

@@ -56,7 +56,7 @@ export default function Contact() {
 
   return (
     <div className="bg-[#f7f4ef]">
-      <PageHero title="Contact Us" subtitle="We always love to hear from you" image={HERO_IMG} />
+      <PageHero title="Contact Us" subtitle="We always love to hear from you" image={HERO_IMG} overlay="bg-black/40" />
 
       {/* Contact form + info */}
       <section className="py-24 lg:py-32 border-b border-black/8">

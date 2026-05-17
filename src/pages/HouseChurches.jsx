@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import useDocumentTitle from '@/hooks/useDocumentTitle';
 
-const HERO_IMG = '/images/gcc12.jpg';
+const HERO_IMG = '/images/gcc21.jpg';
 
 const hcs = [
   {
@@ -39,7 +39,7 @@ export default function HouseChurches() {
 
   return (
     <div className="bg-[#f7f4ef]">
-      <PageHero title="House Churches" subtitle="Building strong family institutions — one home at a time." image={HERO_IMG} />
+      <PageHero title="House Churches" subtitle="Building strong family institutions — one home at a time." image={HERO_IMG} objectPosition="center 30%" overlay="bg-black/45" />
 
       {/* Intro */}
       <section className="py-24 lg:py-32 border-b border-black/8">

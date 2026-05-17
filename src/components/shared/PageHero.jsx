@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export default function PageHero({ title, subtitle, image }) {
+export default function PageHero({ title, subtitle, image, objectPosition = 'center', overlay = 'bg-black/22' }) {
   return (
     <section
       aria-label={`${title} page hero`}
@@ -13,6 +13,7 @@ export default function PageHero({ title, subtitle, image }) {
           alt=""
           aria-hidden="true"
           className="w-full h-full object-cover"
+          style={{ objectPosition }}
           /* LCP image — load eagerly and at high priority */
           loading="eager"
           decoding="async"
@@ -21,7 +22,7 @@ export default function PageHero({ title, subtitle, image }) {
           animate={{ scale: 1 }}
           transition={{ duration: 1.8, ease: 'easeOut' }}
         />
-        <div className="absolute inset-0 bg-black/50" />
+        <div className={`absolute inset-0 ${overlay}`} />
       </div>
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-10 pb-12">
