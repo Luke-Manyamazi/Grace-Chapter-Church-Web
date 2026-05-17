@@ -35,10 +35,10 @@ npm install
 
 ### 3. Configure environment variables
 
-Copy `.env.example` to `.env` and fill in your keys:
+Create a `.env` file in the project root and fill in your keys:
 
 ```bash
-cp .env.example .env
+touch .env
 ```
 
 | Variable | Where to get it |
