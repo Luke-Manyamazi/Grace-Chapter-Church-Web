@@ -43,12 +43,14 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Close mobile menu and scroll to top on route change
+  // Close mobile menu and scroll to top on route change (skip if navigating to a hash anchor)
   useEffect(() => {
     setIsOpen(false);
     setDropdownOpen(false);
-    window.scrollTo({ top: 0, behavior: 'instant' });
-  }, [location.pathname]);
+    if (!location.hash) {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+  }, [location.pathname, location.hash]);
 
   // Close dropdown when clicking outside
   useEffect(() => {

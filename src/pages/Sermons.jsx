@@ -150,12 +150,12 @@ export default function Sermons() {
         </section>
       )}
 
-      {/* Pastor banner */}
+      {/* Congregation banner */}
       <div className="border-b border-black/8 overflow-hidden">
         <img
-          src="/images/gcc8.jpg"
-          alt="Pastor preaching at Grace Chapter Church"
-          className="w-full max-h-[480px] object-cover object-top"
+          src="/images/gcc4.jpg"
+          alt="Grace Chapter Church members"
+          className="w-full max-h-[520px] object-cover" style={{ objectPosition: 'center 20%' }}
           loading="lazy"
           decoding="async"
         />

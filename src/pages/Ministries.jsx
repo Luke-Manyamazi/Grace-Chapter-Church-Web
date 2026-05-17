@@ -5,7 +5,7 @@ import useDocumentTitle from '@/hooks/useDocumentTitle';
 
 const HERO_IMG = '/images/gcc7.jpg';
 const YOUTH_IMG = '/images/gcc15.jpg';
-const KIDS_IMG = '/images/gcc4.jpg';
+const KIDS_IMG = '/images/gcc_kids.jpg';
 const WECARE_IMG = '/images/gcc13.jpg';
 
 const socialPlatforms = [

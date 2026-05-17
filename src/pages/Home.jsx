@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { ArrowRight, Play, MapPin } from 'lucide-react';
 import ScrollTicker from '../components/shared/ScrollTicker';
 import { CountUp } from '../components/shared/TextEffects';
 import useDocumentTitle from '@/hooks/useDocumentTitle';
 
-const HERO_IMG = '/images/hero-home.jpg';
 const WELCOME_IMG = '/images/welcome.jpg';
 const HOUSE_IMG = '/images/house-churches.jpg';
+
+const slides = [
+  { image: '/images/gcc12.jpg',     line1: 'RESTING IN',   line2: 'CHRIST' },
+  { image: '/images/hero-home.jpg', line1: 'REVEALING',    line2: 'CHRIST' },
+  { image: '/images/gcc11.jpg',     line1: 'RECONCILING',  line2: 'THE WORLD' },
+];
 
 const campuses = [
   { city: 'Johannesburg', contact: 'Rugare', phone: '+27 76 117 9485', flag: '🇿🇦' },
@@ -20,33 +25,46 @@ const campuses = [
 ];
 
 export default function Home() {
-  useDocumentTitle(null); // Home uses the base title
+  useDocumentTitle(null);
+
+  const prefersReducedMotion = useReducedMotion();
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+    const timer = setInterval(() => setActive(s => (s + 1) % slides.length), 8000);
+    return () => clearInterval(timer);
+  }, [prefersReducedMotion]);
 
   return (
     <div className="bg-[#f7f4ef] overflow-x-hidden">
 
-      {/* Hero */}
+      {/* Hero slideshow */}
       <section
         className="relative h-screen min-h-[640px] flex flex-col justify-end overflow-hidden"
         aria-label="Welcome to Grace Chapter Church"
       >
-        <div className="absolute inset-0">
+        {/* Background images — crossfade */}
+        <AnimatePresence mode="sync">
           <motion.img
-            src={HERO_IMG}
+            key={active}
+            src={slides[active].image}
             alt=""
             aria-hidden="true"
-            className="w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover"
             loading="eager"
             fetchPriority="high"
             decoding="async"
-            initial={{ scale: 1.06 }}
-            animate={{ scale: 1 }}
+            initial={{ opacity: 0, scale: 1.06 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 2.2, ease: 'easeOut' }}
           />
-          <div className="absolute inset-0 bg-black/55" aria-hidden="true" />
-        </div>
+        </AnimatePresence>
+        <div className="absolute inset-0 bg-black/55" aria-hidden="true" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 w-full pb-16">
+        {/* Text content — slides in per transition */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 w-full pb-20">
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -55,20 +73,26 @@ export default function Home() {
           >
             Grace Chapter Church
           </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            className="font-heading text-[clamp(4rem,12vw,11rem)] tracking-wider text-white leading-none mb-8"
-          >
-            REVEALING<br />
-            <span className="text-white/50">CHRIST</span>
-          </motion.h1>
+
+          <AnimatePresence mode="wait">
+            <motion.h1
+              key={active}
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+              className="font-heading text-[clamp(4rem,12vw,11rem)] tracking-wider text-white leading-none mb-8"
+            >
+              {slides[active].line1}<br />
+              <span className="text-white/50">{slides[active].line2}</span>
+            </motion.h1>
+          </AnimatePresence>
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.7 }}
-            className="flex flex-wrap gap-4"
+            className="flex flex-wrap items-center gap-4"
           >
             <Link
               to="/about"
@@ -83,6 +107,22 @@ export default function Home() {
               Get In Touch
             </Link>
           </motion.div>
+
+          {/* Slide dots */}
+          <div className="flex items-center gap-2 mt-8" role="tablist" aria-label="Hero slides">
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                role="tab"
+                aria-selected={i === active}
+                aria-label={`Slide ${i + 1}: ${slides[i].line1} ${slides[i].line2}`}
+                onClick={() => setActive(i)}
+                className={`h-1 rounded-full transition-all duration-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${
+                  i === active ? 'w-8 bg-white' : 'w-2 bg-white/35 hover:bg-white/60'
+                }`}
+              />
+            ))}
+          </div>
         </div>
 
         <div className="absolute right-6 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-4 z-10" aria-hidden="true">
@@ -100,8 +140,8 @@ export default function Home() {
           <div className="grid grid-cols-3 divide-x divide-black/8">
             {[
               { val: 6, suffix: '+', label: 'Global Campuses' },
-              { val: 15, suffix: '+', label: 'Years of Grace' },
-              { val: 3, suffix: '', label: 'Generations Reached' },
+              { val: 10, suffix: '+', label: 'Years of Grace' },
+              { val: 8, suffix: '+', label: 'Generations Reached' },
             ].map((s, i) => (
               <motion.div
                 key={s.label}
@@ -275,22 +315,34 @@ export default function Home() {
       <ScrollTicker dark />
 
       {/* YouTube CTA */}
-      <section className="bg-black py-24 text-center">
-        <p className="text-white/30 text-xs tracking-[0.3em] uppercase font-semibold mb-6">Grace Media</p>
-        <h2 className="font-heading text-5xl md:text-7xl lg:text-8xl tracking-wider text-white leading-none mb-8">
-          WATCH ONLINE
-        </h2>
-        <p className="text-white/35 text-base mb-10 max-w-md mx-auto px-6">
-          Join us live or catch up on our latest teachings, conferences and praise.
-        </p>
-        <a
-          href="https://www.youtube.com/@GraceChapterChurch"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-3 border border-white/30 text-white text-xs font-bold tracking-[0.2em] uppercase px-8 py-3.5 hover:bg-white hover:text-black transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
-        >
-          <Play className="w-3.5 h-3.5 fill-current" aria-hidden="true" /> Watch on YouTube
-        </a>
+      <section className="relative bg-black py-24 text-center overflow-hidden">
+        <div className="absolute inset-0" aria-hidden="true">
+          <img
+            src="/images/gcc16.jpg"
+            alt=""
+            className="w-full h-full object-cover opacity-60" style={{ objectPosition: 'center 25%' }}
+            loading="lazy"
+            decoding="async"
+          />
+          <div className="absolute inset-0 bg-black/45" />
+        </div>
+        <div className="relative z-10 px-6">
+          <p className="text-white/30 text-xs tracking-[0.3em] uppercase font-semibold mb-6">Grace Media</p>
+          <h2 className="font-heading text-5xl md:text-7xl lg:text-8xl tracking-wider text-white leading-none mb-8">
+            WATCH ONLINE
+          </h2>
+          <p className="text-white/45 text-base mb-10 max-w-md mx-auto">
+            Join us live or catch up on our latest teachings, conferences and praise.
+          </p>
+          <a
+            href="https://www.youtube.com/@GraceChapterChurch"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 border border-white/40 text-white text-xs font-bold tracking-[0.2em] uppercase px-8 py-3.5 hover:bg-white hover:text-black transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+          >
+            <Play className="w-3.5 h-3.5 fill-current" aria-hidden="true" /> Watch on YouTube
+          </a>
+        </div>
       </section>
     </div>
   );

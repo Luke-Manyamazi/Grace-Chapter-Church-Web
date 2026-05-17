@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin, ArrowUp } from 'lucide-react';
 
 const GCC_LOGO = '/images/gcc_logo.png';
 
@@ -49,7 +49,7 @@ function AnimatedWelcome() {
           animate={t.animate}
           exit={prefersReducedMotion ? undefined : t.exit}
           transition={t.transition}
-          className="font-heading text-6xl md:text-8xl lg:text-9xl tracking-wider leading-none text-white absolute whitespace-pre-line text-center"
+          className="font-heading text-6xl md:text-8xl lg:text-9xl tracking-wider leading-none text-black absolute whitespace-pre-line text-center"
         >
           {'ALL ARE\nWELCOME'}
         </motion.p>
@@ -60,18 +60,17 @@ function AnimatedWelcome() {
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-white">
+    <footer className="bg-white text-black border-t border-black/8">
       {/* CTA banner */}
-      <div className="border-b border-white/10 py-24 px-6 text-center overflow-hidden">
-        <p className="text-white/40 text-xs tracking-[0.3em] uppercase font-semibold mb-6">Join Our Family</p>
-        {/* Visible to screen readers as static text; animated version is aria-hidden */}
+      <div className="border-b border-black/8 py-24 px-6 text-center overflow-hidden">
+        <p className="text-black/40 text-xs tracking-[0.3em] uppercase font-semibold mb-6">Join Our Family</p>
         <p className="sr-only">All Are Welcome</p>
         <AnimatedWelcome />
         <a
           href="https://wa.me/27731701167"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-3 border border-white/30 text-white text-xs font-bold tracking-[0.2em] uppercase px-8 py-3.5 hover:bg-white hover:text-black transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+          className="inline-flex items-center gap-3 border border-black/30 text-black text-xs font-bold tracking-[0.2em] uppercase px-8 py-3.5 hover:bg-black hover:text-white transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
         >
           Connect With Us →
         </a>
@@ -83,7 +82,7 @@ export default function Footer() {
 
           {/* Brand */}
           <div>
-            <Link to="/" className="flex items-center gap-3 mb-5 hover:opacity-70 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white rounded-sm">
+            <Link to="/" className="flex items-center gap-3 mb-5 hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black rounded-sm">
               <img
                 src={GCC_LOGO}
                 alt="Grace Chapter Church"
@@ -95,17 +94,17 @@ export default function Footer() {
               />
               <span className="font-heading text-xl tracking-wider leading-tight">Grace Chapter<br />Church</span>
             </Link>
-            <p className="text-white/35 text-sm leading-relaxed mb-6">
+            <p className="text-black/45 text-sm leading-relaxed mb-6">
               A Christ-centred family. Revealing Christ to the world.
             </p>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-2">
               {socialLinks.map((s) => (
                 <a
                   key={s.label}
                   href={s.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs text-white/35 hover:text-white tracking-wider uppercase transition-colors editorial-link focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                  className="text-xs text-black/50 hover:text-black tracking-wider uppercase border border-black/12 hover:border-black/30 px-3 py-1.5 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                 >
                   {s.label}
                 </a>
@@ -115,7 +114,7 @@ export default function Footer() {
 
           {/* Navigation links */}
           <div>
-            <h2 className="text-xs font-bold tracking-[0.2em] uppercase text-white/40 mb-5">Explore</h2>
+            <h2 className="text-xs font-bold tracking-[0.2em] uppercase text-black/40 mb-5">Explore</h2>
             <nav aria-label="Footer navigation">
               <div className="space-y-3">
                 {[
@@ -128,7 +127,7 @@ export default function Footer() {
                   <Link
                     key={link.path}
                     to={link.path}
-                    className="block text-sm text-white/35 hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                    className="block text-sm text-black/40 hover:text-black transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                   >
                     {link.label}
                   </Link>
@@ -139,19 +138,19 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h2 className="text-xs font-bold tracking-[0.2em] uppercase text-white/40 mb-5">Get In Touch</h2>
+            <h2 className="text-xs font-bold tracking-[0.2em] uppercase text-black/40 mb-5">Get In Touch</h2>
             <div className="space-y-4">
               <a href="mailto:hello@gracechapterchurch.online"
-                className="flex items-center gap-3 text-sm text-white/35 hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+                className="flex items-center gap-3 text-sm text-black/40 hover:text-black transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
                 <Mail className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
                 hello@gracechapterchurch.online
               </a>
               <a href="tel:+27731701167"
-                className="flex items-center gap-3 text-sm text-white/35 hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+                className="flex items-center gap-3 text-sm text-black/40 hover:text-black transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
                 <Phone className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
                 +27 (0) 73 170 1167
               </a>
-              <div className="flex items-start gap-3 text-sm text-white/35">
+              <div className="flex items-start gap-3 text-sm text-black/40">
                 <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5" aria-hidden="true" />
                 <span>JHB · CPT · Harare · UK · Canada · Mozambique</span>
               </div>
@@ -160,19 +159,26 @@ export default function Footer() {
 
           {/* Scripture */}
           <div>
-            <h2 className="text-xs font-bold tracking-[0.2em] uppercase text-white/40 mb-5">Our Anchor</h2>
-            <blockquote className="border-l border-white/20 pl-4">
-              <p className="text-white/35 text-sm italic leading-relaxed">
+            <h2 className="text-xs font-bold tracking-[0.2em] uppercase text-black/40 mb-5">Our Anchor</h2>
+            <blockquote className="border-l border-black/15 pl-4">
+              <p className="text-black/45 text-sm italic leading-relaxed">
                 "For it is by grace you have been saved, through faith — and this is not from yourselves, it is the gift of God."
               </p>
-              <footer className="mt-3 text-white/25 text-xs">— Ephesians 2:8</footer>
+              <footer className="mt-3 text-black/30 text-xs">— Ephesians 2:8</footer>
             </blockquote>
           </div>
         </div>
 
-        <div className="border-t border-white/8 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-white/20 tracking-wider">© {new Date().getFullYear()} Grace Chapter Church</p>
-          <p className="text-xs text-white/20 tracking-wider">Revealing Christ to the World</p>
+        <div className="border-t border-black/8 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            aria-label="Scroll to top"
+            className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.15em] uppercase text-black/40 hover:text-black border border-black/12 hover:border-black/30 px-4 py-2 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+          >
+            <ArrowUp className="w-3.5 h-3.5" aria-hidden="true" /> Back to Top
+          </button>
+          <p className="text-xs text-black/25 tracking-wider">© {new Date().getFullYear()} Grace Chapter Church</p>
+          <p className="text-xs text-black/25 tracking-wider">Revealing Christ to the World</p>
         </div>
       </div>
     </footer>

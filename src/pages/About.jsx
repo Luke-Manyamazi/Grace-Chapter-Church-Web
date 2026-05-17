@@ -6,7 +6,7 @@ import { CheckCircle2 } from 'lucide-react';
 import useDocumentTitle from '@/hooks/useDocumentTitle';
 
 const HERO_IMG = '/images/gcc17.jpg';
-const PASTORS_IMG = '/images/gcc14.jpg';
+const PASTORS_IMG = '/images/pd1.jpg';
 
 const beliefs = [
   'The Bible is inspired and empowered by God, infallible and our authority.',

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
 import PageHero from '../components/shared/PageHero';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -19,14 +20,16 @@ export default function Contact() {
   const [sent, setSent] = useState(false);
   const [copied, setCopied] = useState(false);
   const { toast } = useToast();
+  const location = useLocation();
 
-  React.useEffect(() => {
-    if (window.location.hash === '#giving') {
-      setTimeout(() => {
+  useEffect(() => {
+    if (location.hash === '#giving') {
+      const timer = setTimeout(() => {
         document.getElementById('giving')?.scrollIntoView({ behavior: 'smooth' });
-      }, 300);
+      }, 150);
+      return () => clearTimeout(timer);
     }
-  }, []);
+  }, [location.hash]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
